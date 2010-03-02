@@ -1,0 +1,6 @@
+%h1 Редактирование источника
+
+%div
+  = link_to '', @source, :confirm => 'Внимание! Будет удален источник и все его выпуски. Продолжить?', :method => :delete, :class => 'icon ui-icon-trash', :title => "Удалить '#{@source}'"
+
+= render :partial => 'form'

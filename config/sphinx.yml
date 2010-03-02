@@ -1,0 +1,28 @@
+defaults: &defaults
+  listen: 127.0.0.1:3313 # дефолтный порт: 3312
+  port: 3313 # конструкция listen (необходимая для sphinx 0.9.9) в ts (текущая версия - 1.3.2) теряет порт, поэтому приходится прописывать его в старой нотации
+  allow_star: true
+  html_strip: true
+  morphology: 'stem_enru'
+  min_stemming_length: 4 # ts не поддерживает эту опцию
+  index_exact_words: true # ts не поддерживает эту опцию
+  mem_limit: 512M # максимальное значение - 2047M
+  max_children: 300
+  max_matches: 1000000
+  seamless_rotate: true
+  preopen_indexes: true
+  bin_path: '/usr/local/bin'
+  delayed_job_priority: 2
+  pid_file: <%= "#{RAILS_ROOT}/tmp/pids/searchd.#{RAILS_ENV}.pid" %>
+  # другие настройки описаны в файле:
+  #   ../vendor/gems/thinking-sphinx-*/lib/thinking_sphinx/configuration.rb
+  #   ../vendor/gems/thinking-sphinx-1.3.4/lib/thinking_sphinx/configuration.rb
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults

@@ -1,0 +1,9 @@
+= @source.title
+= @issue.number
+= @issue.date
+
+%p
+  = @page.number
+  = link_to image_tag(@page.image_url('medium')), page.image_url('big')
+
+= link_to 'Back', [@source, @issue]

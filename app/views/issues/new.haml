@@ -1,0 +1,19 @@
+%h1= link_to @source.title, edit_source_path(@source)
+%h4 Добавление нового выпуска
+
+- form_for([@source, @issue], :html => { :method => :post, :multipart => true, :id => 'issue_form' } ) do |f|
+  = f.error_messages
+  %div
+    = f.label :pdf_file, 'PDF-файл для загрузки:'
+    = f.file_field :pdf_file, :class => 'file', :size => 11
+  %div
+    = f.label :txt_file, 'Текстовый файл для загрузки:'
+    = f.file_field :txt_file, :class => 'file', :size => 11
+  %div
+    = f.label :number, 'Номер выпуска:'
+    = f.text_field :number, :size => 5, :value => (@source.issue_last and @source.issue_last.number) ? @source.issue_last.number + 1 : 1
+  %div
+    = f.label :date, 'Дата выпуска:'
+    = f.text_field :date, :size => 9, :value => Russian::strftime(Date.today)
+  %div
+    = f.submit 'Сохранить', :class => 'submit'

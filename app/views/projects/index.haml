@@ -1,0 +1,24 @@
+%h1
+  Проекты
+%div
+  = link_to 'New project', new_user_project_path(current_user)
+
+%hr
+
+- @searchers.each_with_index do |user, index|
+  %div{:style => 'clear:both;'}
+    = index + 1
+    - name = user.name || user.login
+    = name
+    =# image_tag user.gravatar_url(:size => 25, :default => 'identicon'), {:style => 'float:left;'}
+    = image_tag user.gravatar_url(:size => 25, :default => 'monsterid'), {:style => 'float:left;', :width => 25, :height => 25, :alt => name}
+    -# %div{:style => 'float:left;'}
+  - user.projects.each do |project|
+    %tr
+      %td
+        = link_to 'Show', project
+      %td
+        = link_to 'Edit', edit_project_path(project)
+      %td
+        = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+%hr

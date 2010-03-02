@@ -1,0 +1,12 @@
+%h1 Редактирование выпуска
+
+- form_for([@source, @issue], :html => { :id => 'issue_form' }) do |f|
+  = f.error_messages
+  %div
+    = f.label :number, 'Номер выпуска:'
+    = f.text_field :number, :size => 5, :value => @issue.number
+  %div
+    = f.label :date, 'Дата выпуска:'
+    = f.text_field :date, :size => 9, :value => Russian::strftime(@issue.date)
+  %div
+    = f.submit 'Сохранить', :class => 'submit'

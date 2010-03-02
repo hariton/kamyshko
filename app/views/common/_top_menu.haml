@@ -1,0 +1,22 @@
+- if params[:controller] != 'home'
+  = link_to '', root_url, {:class => 'icon ui-icon-home', :title => 'В начало'}
+- else
+  %span.icon.ui-icon-home{:style => 'padding:0', :title => 'В начало'}
+%span.divider
+  |
+- permitted_to? :show, :carts do
+  - addition_cart_class = cart.pages.any? ? ' cart-charged' : ''
+  = link_to '', cart_path, {:class => 'icon ui-icon-cart' << addition_cart_class, :title => 'Корзина'}
+  %span.divider
+    |
+= link_to '', account_path, {:class => 'icon ui-icon-help', :title => 'Помощь'}
+%span.divider
+  |
+- permitted_to? :index, :projects do
+  = link_to 'Проекты', user_projects_path(current_user)
+  %span.divider
+    |
+= link_to 'Настройки', edit_account_path
+%span.divider
+  |
+= link_to 'Выйти', logout_path, :confirm => 'Вы действительно хотите выйти из системы?'

@@ -1,0 +1,13 @@
+
+development: &production_settings
+  app_name: kamyshko
+  user: xxxxx
+  group: yyyyyy
+  app_root: '/var/webapps/kamyshko'
+  sphinx_bin_path: '/usr/local/bin'
+
+test:
+  << *production_settings
+
+production:
+  << *production_settings

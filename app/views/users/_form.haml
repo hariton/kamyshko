@@ -1,0 +1,20 @@
+%p
+  = form.label 'Логин'
+  %br
+  = form.text_field :login
+%p
+  = form.label 'Имя'
+  %br
+  = form.text_field :name
+%p
+  = form.label :email
+  %br
+  = form.text_field :email
+%p
+  = form.label :password, form.object.new_record? ? nil : 'Сменить пароль'
+  %br
+  = form.password_field :password
+%p
+  = form.label 'Повторить ввод пароля'
+  %br
+  = form.password_field :password_confirmation

@@ -1,0 +1,18 @@
+
+-#
+  t.references :user
+  t.references :search_query
+
+- form_for([current_user, @project]) do |f|
+  = f.error_messages
+  %p
+    = f.label :title, 'Название проекта'
+    %br
+    = f.text_field :title
+  %p
+    = f.label :search_days, 'Глубина поиска (в днях)'
+    %br
+    = f.text_field :search_days
+  %p
+    = f.submit 'Сохранить', :class => 'submit'
+

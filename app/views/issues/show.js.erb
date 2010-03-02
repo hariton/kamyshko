@@ -1,0 +1,5 @@
+$('#screen').html("<%= escape_javascript(render :partial => 'common/page_medium_image', :locals => { :page => @page }) %>");
+$('#page-navigation').html("<%= escape_javascript(render 'page_navigation') %>");
+$('#pages .page .current-page').removeClass('current-page');
+$('#pages <%= "#page_#{@page.number}" %> .page-number').addClass('current-page');
+$('.zoom').zoom(zoom_options);

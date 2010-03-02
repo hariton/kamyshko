@@ -1,0 +1,91 @@
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml' }
+  %head
+    %title== Common page: #{controller.action_name}
+    %meta{ 'http-equiv' => 'content-type', :content => 'text/html;charset=UTF-8' }
+    = stylesheet_link_tag ['ui.core', 'ui.theme', 'ui.datepicker']
+    = stylesheet_link_tag ['common']
+    = javascript_include_tag ['jquery.min']
+    = javascript_include_tag ['ui.core.min', 'ui.draggable.min', 'ui.datepicker.min', 'ui.datepicker-ru.min']
+    = javascript_include_tag ['validate.min', 'textarearesizer.min', 'dataTables.min']
+    = javascript_include_tag ['ba-bbq.min']
+    = javascript_include_tag ['ba-debug']
+    = javascript_include_tag ['zoom']
+    = javascript_include_tag ['application']
+  %body
+    %a{:name => 'top'}
+    %div#column1
+      %div#user
+        %span
+          - name = current_user.name || current_user.login
+          = name
+        = image_tag current_user.gravatar_url(:size => 25, :default => 'monsterid'), {:width => 25, :height => 25, :alt => name}
+      %div#menu
+        = render :partial => 'common/top_menu'
+      %div#flash{:class => flash[:notice] ? 'notice' : flash[:error] ? 'error' : ''}
+        - if flash[:notice] || flash[:error]
+          %span
+            = flash[:notice] || flash[:error]
+      - form_tag( {:controller => :search_queries, :action => :create}, :method => :post, :id => 'search_form' ) do
+        %div#row1
+          - query = 'поиск'
+          - query = current_user.search_query.query if current_user.search_query
+          = text_area_tag :search_query, query, :class => 'resizable'
+          = submit_tag 'Найти', {:id => 'search_submit', :class => 'submit'}
+        %div#row2
+          %span.field-title
+            Период поиска:
+          %span{:style => 'padding:0 3px'}
+            c
+          - search_date_start = Date.today.strftime('%d.%m.%Y')
+          - search_date_start = current_user.search_query.option_search_date_start.strftime('%d.%m.%Y') if current_user.search_query
+          - query = current_user.search_query.query if current_user.search_query
+          = text_field_tag :search_date_start, search_date_start
+          %span{:style => 'padding:0 3px'}
+            по
+          - search_date_end = Date.today.strftime('%d.%m.%Y')
+          - search_date_end = current_user.search_query.option_search_date_end.strftime('%d.%m.%Y') if current_user.search_query
+          = text_field_tag :search_date_end, search_date_end
+          - if current_user.search_query and current_user.search_query.option_search_in_sources
+            - selected_sources_ids = current_user.search_query.option_search_in_sources.split(',').collect(&:to_i)
+          - else
+            - selected_sources_ids = sources.collect(&:id)
+          %div#selected_search_sources
+            %a.icon.ui-icon-arrowthickstop-1-s.search_sources_trigger
+            %span.field-title.search_sources_trigger
+              Источники:
+            %span#selected_sources_counter
+              = selected_sources_ids.size
+            == (из <span id="sources_sum">#{sources.size}</span>)
+        %div#search_sources
+          %div#search_sources_header
+            %span.field-title
+              Выбор источников для поиска:
+            %div#search_sources_buttons
+              %a#select_all
+                выбрать все
+              %span.divider
+                |
+              %a#select_none
+                снять выделение
+              %span.divider
+                |
+              %a#select_invert
+                инвертировать
+          %div#search_sources_columns
+            - sources.columnize(3).each do |column|
+              %div.search_sources_column
+                - for source in column
+                  - truncate_title = truncate(source.title, :length => 17)
+                  %a
+                    - checked = selected_sources_ids.include?(source.id)
+                    = check_box_tag 'search_in_sources[]', source.id, checked
+                    %span.title
+                      = truncate_title
+                    - if truncate_title.size != source.title.size
+                      %span.tip
+                        = source.title
+      %div#content
+        = yield
+    %div#column2
+      = yield :column2

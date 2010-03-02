@@ -1,0 +1,15 @@
+- if cart.pages.include?(page)
+  = link_to '', remove_from_cart_path(page), :class => 'icon ui-icon-cart cart-charged remove_page', :title => 'Удалить страницу из корзины'
+- else
+  = link_to '', add_to_cart_path(page), {:class => 'icon ui-icon-cart add_page', :title => 'Добавить страницу в корзину'}
+= link_to '', page.image_url('big'), {:class => 'icon ui-icon-document', :title => 'Файл страницы'}
+= link_to '', source_issue_page_path(page.issue.source, page.issue, page, :format => 'text'), {:class => 'icon ui-icon-document-b', :title => 'Текст страницы'}
+- if params[:controller] != 'search_queries'
+  - if page.prev
+    = link_to '', source_issue_path(page.issue.source, page.issue, :page => page.prev.number), {:id => 'prev_page', :class => 'icon ui-icon-circle-arrow-w', :title => 'Предыдущая страница'}
+  - else
+    %span.icon.ui-icon-circle-arrow-w{:title => 'Предыдущая страница'}
+  - if page.next
+    = link_to '', source_issue_path(page.issue.source, page.issue, :page => page.next.number), {:id => 'next_page',:class => 'icon ui-icon-circle-arrow-e', :title => 'Следующая страница'}
+  - else
+    %span.icon.ui-icon-circle-arrow-e{:title => 'Следующая страница'}

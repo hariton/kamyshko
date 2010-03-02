@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), '../vendor/bundler_gems/bundler/lib'))
+require 'rubygems'
+require 'rubygems/command'
+require 'bundler'
+require 'bundler/commands/bundle_command'
+
+Gem::Commands::BundleCommand.new.invoke(*ARGV)

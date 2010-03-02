@@ -1,0 +1,15 @@
+- page = @cart_page.page
+%div.page-title
+  = link_to page.source_string, source_issue_path(page.issue.source, page.issue, :page => page.number)
+%div.page-buttons
+  = link_to '', remove_from_cart_path(page), :confirm => 'Вы действительно хотите удалить страницу из корзину?', :method => :delete, :class => 'icon ui-icon-trash remove_page'
+  = link_to '', page.image_url('big'), {:class => 'icon ui-icon-document', :title => 'Файл страницы'}
+  = link_to '', source_issue_page_path(page.issue.source, page.issue, page, :format => 'text'), {:class => 'icon ui-icon-document-b', :title => 'Текст страницы'}
+  - if @cart_page.prev
+    = link_to '', cart_path(:page => @cart_page.prev.position), {:id => 'prev_page', :class => 'icon ui-icon-circle-arrow-w', :title => 'Предыдущая страница'}
+  - else
+    %span.icon.ui-icon-circle-arrow-w{:title => 'Предыдущая страница'}
+  - if @cart_page.next
+    = link_to '', cart_path(:page => @cart_page.next.position), {:id => 'next_page',:class => 'icon ui-icon-circle-arrow-e', :title => 'Следующая страница'}
+  - else
+    %span.icon.ui-icon-circle-arrow-e{:title => 'Следующая страница'}

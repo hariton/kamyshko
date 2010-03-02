@@ -1,0 +1,5 @@
+= will_paginate @pages, :previous_label => '←', :next_label => '→', :class => 'pagination'
+- @pages.each do |page|
+  %div{:id => "page_#{page.id}" }
+    = render :partial => 'common/search_result_page', :locals => { :page => page }
+= will_paginate @pages, :previous_label => '←', :next_label => '→', :class => 'pagination'

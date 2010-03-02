@@ -1,0 +1,896 @@
+!tip_color = #f6eebd
+!main_yellow = #ef8c08
+!dim_yellow = #f7c484
+!blue = #e8eef6
+!light_gray = #aaaaaa
+!column1_width = 572px
+!column2_width = 670px
+!search_form_gap = 26px
+!sorted_gap = 22px
+!sources_table_gap = 5px
+!sources_table_width = 567px
+!sources_table_paginate_width = 44px
+
+div.page-title
+  :font
+    :size 17px
+    :family 'Times'
+div.page-buttons
+  :margin-top 10px
+  .cart-charged
+    :background
+      :color = !dim_yellow
+      :image url(/images/ui-icons_222222_256x240.png)
+
+div.pagination
+  :position relative
+  :height 30px
+  a, span
+    :display block
+    :float left
+    :font
+      :size 12px
+    :width 20px
+    :height 18px
+    :text-align center
+    :margin 0 3px
+    &.prev_page, &.next_page
+      :font-weight bold
+  a
+    &:hover
+      :color white
+      :font-weight bold
+      :background-color = !dim_yellow
+  span
+    &.prev_page, &.next_page
+      :color gray
+    &.gap
+      :outline none
+      :font-weight bold
+    &.current
+      :font-weight bold
+      :background-color = !dim_yellow
+
+!issue_form_label_width = 200px
+!issue_form_label_gap = 10px
+!issue_form_input_width = 190px
+#issue_form
+  :clear both
+  div
+    :position relative
+    :height 33px
+    label
+      :position absolute
+      :text-align right
+      :width = !issue_form_label_width
+      :margin-right = !issue_form_label_gap
+    input
+      :position absolute
+      :left = !issue_form_label_width + !issue_form_label_gap
+      :width = !issue_form_input_width
+    label.error
+      :position absolute
+      :text-align left
+      :left = !issue_form_label_width + 2 * !issue_form_label_gap + !issue_form_input_width
+      :width = !column1_width - (!issue_form_label_width + 2 * !issue_form_label_gap + !issue_form_input_width)
+      :line-height 13px
+      :font
+        :size 12px
+        :weight bold
+    input.file
+      :width = !issue_form_input_width
+    input.submit
+
+!source_form_label_width = 200px
+!source_form_label_gap = 10px
+!source_form_input_width = 190px
+#source_form
+  :clear both
+  div
+    :position relative
+    :height 33px
+    label
+      :position absolute
+      :text-align right
+      :width = !source_form_label_width
+      :margin-right = !source_form_label_gap
+    input
+      :position absolute
+      :left = !source_form_label_width + !source_form_label_gap
+      :width = !source_form_input_width
+
+a
+  :text-decoration none
+  :color black
+  :cursor pointer
+  &:hover
+    :background-color = !dim_yellow
+    :color white
+  &.external-link
+    :display block
+    :float left
+    :margin-left 5px
+    :height 18px
+    :width 18px
+    :background
+      :position 4px 6px
+      :image url(/images/common/icons/external_hair_black.png)
+      :repeat no-repeat
+
+p
+  :margin 0px
+  :padding 0px
+  :position relative
+
+form
+  :margin 0px
+  :padding 0px
+
+input, textarea
+  :border solid 1px black
+  :height 18px
+
+input.file, input.submit
+  :border none
+  :height 24px
+
+label.error
+  :color red
+
+input.error
+  :border 1px dashed #f00
+
+body
+  :margin auto
+  :font
+    :size 80%
+    :family 'Trebuchet MS', 'Helvetica', 'Arial', 'Verdana', 'sans-serif'
+
+#column1
+  :position absolute
+  :padding 5px 0 30px 5px
+  :width = !column1_width
+
+#column2
+  // :position fixed
+  :position absolute
+  :left = !column1_width + 15px
+  :width = !column2_width
+
+#column1
+
+  #user
+    :float right
+    // :background-color = !tip_color
+    :background-color = !blue
+    :margin-top 5px
+    span
+      :padding 0 3px 0 10px
+      :vertical-align middle
+    img
+      :vertical-align middle
+
+  #menu
+    :padding 5px 5px 35px 5px
+    :font-weight bold
+    a
+      :float left
+      :padding 0 5px
+    .icon
+      :padding 0
+    span.icon
+      :background
+        :image url(/images/ui-icons_f7c484_256x240.png)
+    a.cart-charged
+      :background
+        :color = !dim_yellow
+    span.cart-charged
+      :background
+        :color = !dim_yellow
+        :image url(/images/ui-icons_ffffff_256x240.png)
+
+  #flash
+    :margin
+      :top 12px
+      :bottom 18px
+      :left = !search_form_gap
+    span
+      :padding 1px 50px 2px 5px
+      :background-color = !main_yellow
+      :color white
+
+  #search_form
+    :clear both
+    :padding-left = !search_form_gap
+    :background transparent url(/images/search.gif) no-repeat scroll 0 5px
+    div#row1
+      :position relative
+
+      .grippie
+        :background transparent url(/images/resizer.png) no-repeat scroll center 2px
+        :cursor s-resize
+        :height 16px
+        :overflow hidden
+
+      !search_query_width = 465px
+      !submit_button_width = 70px
+      textarea#search_query
+        :width = !search_query_width
+        // :overflow hidden
+        :overflow auto
+      input
+        :position absolute
+        :top 0px
+        :left = !column1_width - !submit_button_width - !search_form_gap
+        :width = !submit_button_width
+    div#row2
+      :position relative
+      :margin-top 15px
+      input
+        :width 74px
+        :text-align center
+      div#selected_search_sources
+        :position absolute
+        :top 5px
+        :left 320px
+        .search_sources_trigger
+          :cursor pointer
+        #selected_sources_counter, #sources_sum
+          :font-weight bold
+    div#search_sources
+      :position relative
+      :padding 0
+      :margin 0
+      div#search_sources_header
+        :margin 10px 0
+        :padding 10px 0
+        :border-bottom
+          :width 1px
+          :style dotted
+          :color black
+        div#search_sources_buttons
+          :margin 0
+          :padding 0
+          :float right
+          :border none
+          a
+            :float left
+            :padding 0 3px
+      div#search_sources_columns
+        .search_sources_column
+          :float left
+          :width 171px
+          :border-left dotted 1px black
+          :margin-top 10px
+          :padding 0 5px
+          input
+            :position absolute
+          a
+            :display block
+            :position relative
+            :height 19px
+            &:hover
+              :background-color transparent
+              :color black
+              span.tip
+                :display block
+                :z-index 1
+                :padding-bottom 2px
+            !main_width = 26px
+            span.title
+              :left = !main_width
+              :display block
+              :position absolute
+            span.tip
+              :left = !main_width
+              :display none
+              :position absolute
+              :background = !tip_color
+
+  div#content
+    :position relative
+    :clear both
+    :padding-top 10px
+    :margin-top 20px
+    :border-top
+      :width 1px
+      :style dotted
+      :color black
+
+    div#title
+      :font
+        :size 24px
+        :family 'Times'
+        :weight bold
+
+    // issue page
+    !header = 170px
+    !calendar_width = 170px
+    div#header
+      :height = !header
+      div#issue-navigation
+        :position relative
+        :margin 0
+        div#zzz
+          :position absolute
+          :top 0
+          :left 0
+          :width = !column1_width - !calendar_width - 10px
+
+        div#issue-title
+          :font
+            :size 21px
+            :family 'Times'
+            :weight normal
+          span#issue-number
+            // :font
+              :style italic
+        div#issue-buttons
+          :margin-top 10px
+
+        div#calendar
+          :position absolute
+          :top 0
+          :left 200px
+          :width = !calendar_width
+          :margin-bottom 10px
+          :font
+            :size 11px
+            :family 'Arial', 'Verdana', 'sans-serif'
+          a
+            &:hover
+              :background none
+          .today
+            :background = !tip_color
+          .highlight, .active
+            :background = !blue
+            &:hover
+              :background = !dim_yellow
+          .current
+            :background = !dim_yellow
+          .gap
+            /* background black */
+          table
+            :float right
+            :border-collapse collapse
+            caption
+              :padding-bottom 5px
+              :color black
+              :font bold 12px arial, verdana, sans-serif
+              a, span
+                :font
+                  :weight bold
+                  :size 14px
+              a
+                &:hover
+                  :color = !dim_yellow
+              span
+                :color = !light_gray
+            thead
+              th
+                :padding 5px 0
+                :text-align center
+            tbody
+              td
+                :padding 4px 0
+                :text-align center
+                :outline
+                  :style solid
+                  :width 1px
+                  :color white
+            tfoot #next
+              :text-align right
+              td
+                :padding 5px
+
+      div#page-navigation
+        :position absolute
+        :top = !header - 60px
+
+
+    // search result
+    div#search
+      div#summary
+        :width = !column1_width
+        div#entries
+        div#time
+      div#search-results
+        div.result
+          :position relative
+          :height 968px
+          div.text
+            :position absolute
+            :width = !column1_width
+            .excerpts
+              :clear both
+              :position relative
+              :padding-top 20px
+            .page-title
+              :padding-top 15px
+              :font-size 18px
+            .page-buttons
+              a.cart-charged
+                :background
+                  :color = !dim_yellow
+          div.picture
+            :position absolute
+            :left = !column1_width + 15px
+            :width = !column2_width
+
+    // home page
+    div#sources-buttons
+
+    div#issue-navigation
+      :margin-top 25px
+      :clear both
+      div#page-buttons
+        :float right
+      div#issue-buttons
+        :float left
+
+    div#pages
+      :clear both
+      :padding-top 10px
+      a
+      &:hover
+        :background-color transparent
+      div.row
+        :position relative
+        :clear left
+        div.page
+          :position relative
+          :float left
+          .page-number
+            :position absolute
+            :top 102px
+            :left 62px
+            :padding-top 3px
+            :width 33px
+            :height 23px
+            :text-align center
+            :background-color = !tip_color
+            :font-weight bold
+          .current-page
+            :top 80px
+            :left 24px
+            :width 70px
+            :height 45px
+            :font-size 35px
+          .cart-charged
+            :background-color = !main_yellow
+
+    div#on_top
+      :clear both
+      :float right
+      :margin-top 50px
+
+#column2
+
+  #screen
+    :width 685px
+    :height 999px
+    :overflow hidden
+
+.field-title
+  :font-weight bold
+
+span.match
+  :background = !dim_yellow
+
+span.divider
+  :color gray
+  :float left
+
+a.icon, span.icon
+  :float left
+  :height 16px
+  :width 16px
+  :margin 2px 4px 2px 4px
+  :padding 0
+  :display block
+  :overflow hidden
+  :background
+    :image url(/images/ui-icons_222222_256x240.png)
+    :repeat no-repeat
+span.icon
+  :background
+    // :image url(/images/ui-icons_adadad_256x240.png)
+    // :image url(/images/ui-icons_c0c0c0_256x240.png)
+    :image url(/images/ui-icons_d4d4d4_256x240.png)
+
+a.icon
+  :cursor pointer
+  &:hover
+    :background
+      :image url(/images/ui-icons_ffffff_256x240.png)
+      :color = !dim_yellow
+
+// Common issues:
+//   'full_numbers' pagination - I use an extra selector on the body tag to ensure that there is
+//     no conflict between the two pagination types. If you want to use full_numbers pagination
+//     ensure that you either have "example_alt_pagination" as a body class name, or better yet,
+//     modify that selector.
+//   Note that the path used for Images is relative. All images are by default located in
+//     ../images/ - relative to this CSS file.
+
+!silver = #ddd
+
+!dark_dark_gray = #444
+!dark_gray = #999
+
+!gray_maroon = #a19b9e
+!silver_maroon = #d1cfd0
+
+!silver_red = #d1d1d1
+!light_silver_red = #e2e2e2
+
+!light_blue = #d1d1ff
+!light_light_blue = #e2e2ff
+
+!light_green = #d1ffd1
+!light_light_green = #e2ffe2
+!light_light_light_green = #eeffee
+
+!pink = #ffd1d1
+!light_pink = #ffe2e2
+
+.dataTables_wrapper
+  :padding-top 20px
+  :width = !sources_table_width
+  :position relative
+  :min-height 302px
+  :clear both
+
+.dataTables_processing
+  :position absolute
+  :top 0px
+  :left 50%
+  :width 250px
+  :margin-left -125px
+  :border
+    :width 1px
+    :style solid
+    :color = !silver
+  :text-align center
+  :color = !dark_gray
+  :font-size 11px
+  :padding 2px 0
+
+.dataTables_length
+  :width = !sources_table_width/2 - 10px
+  :float left
+
+.dataTables_filter
+  :width = !sources_table_width/2 + 10px
+  :float right
+  label
+    :float left
+  input
+    :float right
+
+.dataTables_info
+  :padding-left = !sources_table_gap
+  :width = !sources_table_width - !sources_table_paginate_width - 10px
+  :float left
+
+.dataTables_paginate
+  :width = !sources_table_paginate_width
+  :float right
+  :text-align right
+
+// Pagination nested
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next
+  :height 19px
+  :width 19px
+  :margin-left 3px
+  :float left
+
+.paginate_disabled_previous
+  :background-image url('/images/tables/back_disabled.png')
+
+.paginate_enabled_previous
+  :background-image url('/images/tables/back_enabled.png')
+
+.paginate_disabled_next
+  :background-image url('/images/tables/forward_disabled.png')
+
+.paginate_enabled_next
+  :background-image url('/images/tables/forward_enabled.png')
+
+table#sources
+  :width = !sources_table_width
+  :clear both
+  :padding-top 15px
+  :margin-left = !sources_table_gap
+  :padding-bottom 20px
+  :margin-bottom 10px
+  :border-bottom
+    :width 2px
+    :style solid
+    :color = !main_yellow
+  a.icon
+    :background
+      :image url(/images/ui-icons_ef8c08_256x240.png)
+    &:hover
+      :background
+        :image url(/images/ui-icons_ffffff_256x240.png)
+  thead
+    th
+      :text-align left
+      :padding-bottom 5px
+      :font-weight bold
+      :border-bottom
+        :width 3px
+        :style solid
+        :color = !main_yellow
+      &.sorted
+        :cursor pointer
+        :padding-left = !sorted_gap
+  tbody
+    tr
+      &.odd:hover, &.even:hover
+        td
+          :background-color = !tip_color
+          :border-bottom
+            :width 1px
+            :style solid
+            :color = transparent
+      td
+        :text-align left
+        :font-weight normal
+        a
+          :float left
+        a.new
+          :display block
+          :float right
+          :margin-top 1px
+          :padding 0 1px 0 3px
+          :background = !main_yellow
+          :color white
+          :font
+            :size 10px
+            :weight bold
+        &.buttons
+          a
+            :float right
+        &.sorted
+          :padding-left = !sorted_gap
+  tfoot
+    th
+      :padding 3px 10px
+      :border-top 1px solid black
+      :font-weight bold
+  tr.heading2
+    td
+      :border-bottom
+        :width 1px
+        :style solid
+        :color = !light_gray
+  td.center
+    :text-align center
+  // DataTables row classes
+  tr
+    td
+      :border-bottom solid 1px transparent
+    &.odd
+      :background white
+      &.gradeA
+        :background-color #ddffdd
+      &.gradeC
+        :background-color #ddddff
+      &.gradeX
+        :background-color #ffdddd
+      &.gradeU
+        :background-color = !silver
+      td
+        &.sorting_1
+          :background-color white
+          :border-bottom
+            :color = white
+        &.sorting_2
+          :background-color #dadcff
+        &.sorting_3
+          :background-color #e0e2ff
+    &.even
+      // :background #f5f5f5
+      // :background #f1f3f6
+      :background #ebedf0
+      td
+        :border-bottom
+          :color silver
+        &.sorting_1
+          :background-color #fffbe3
+          :border-bottom
+            :style dotted
+            :color = !main_yellow
+        &.sorting_2
+          :background-color #f2f3ff
+        &.sorting_3
+          :background-color #f9f9ff
+    &.gradeA
+      :background-color = !light_light_light_green
+    &.gradeC
+      :background-color #eeeeff
+    &.gradeX
+      :background-color #ffeeee
+    &.gradeU
+      :background-color #eee
+
+// DataTables sorting
+.sorting_asc
+  :background url('/images/tables/sort_asc.png') no-repeat center left
+
+.sorting_desc
+  :background url('/images/tables/sort_desc.png') no-repeat center left
+
+.sorting
+  :background url('/images/tables/sort_both.png') no-repeat center left
+
+.sorting_asc_disabled
+  :background url('/images/tables/sort_asc_disabled.png') no-repeat center left
+
+.sorting_desc_disabled
+  :background url('/images/tables/sort_desc_disabled.png') no-repeat center left
+
+// misc
+.top, .bottom
+  :padding 15px
+  :background-color #f5f5f5
+  :border 1px solid #cccccc
+
+.top
+  .dataTables_info
+    :float none
+
+.clear
+  :clear both
+
+.dataTables_empty
+  :text-align center
+
+tfoot
+  input
+    :margin 0.5em 0
+    :width 100%
+    :color = !dark_dark_gray
+
+  input.search_init
+    :color = !dark_gray
+
+td.group
+  :background-color = !silver_maroon
+  // TODO свойство повторяется, оптимизировать
+  :border-bottom
+    :width 2px
+    :style solid
+    :color = !gray_maroon
+  :border-top
+    :width 2px
+    :style solid
+    :color = !gray_maroon
+
+td.details
+  :background-color = !silver_maroon
+  :border
+    :width 2px
+    :style solid
+    :color = !gray_maroon
+
+.example_alt_pagination div.dataTables_info
+  :width 40%
+
+.paging_full_numbers
+  :width 400px
+  :height 22px
+  :line-height 22px
+
+  span.paginate_button, span.paginate_active
+    :border
+      :width 1px
+      :style solid
+      :color = !light_gray
+    :padding 2px 5px
+    :margin 0 3px
+    cursor: pointer
+
+  span.paginate_button
+    :background-color = !silver
+    &:hover
+      :background-color = !light_gray
+
+  span.paginate_active
+    :background-color #99b3ff
+
+table.display
+  tr
+    &.even.row_selected
+      td
+        :background-color #b0bed9
+    &.odd.row_selected
+      td
+        :background-color #9fafd1
+
+//  For the Conditional-CSS grading rows
+//
+//  Colour calculations (based off the main row colours)
+// :Level 1
+//   dd > c4
+//   ee > d5
+// :Level 2
+//   dd > d1
+//   ee > e2
+tr
+  &.odd
+    &.gradeA
+      td
+        &.sorting_1
+          :background-color #c4ffc4
+        &.sorting_2
+          :background-color = !light_green
+        &.sorting_3
+          :background-color = !light_green
+    &.gradeC
+      td
+        &.sorting_1
+          :background-color #c4c4ff
+        &.sorting_2
+          :background-color = !light_blue
+        &.sorting_3
+          :background-color = !light_blue
+    &.gradeX
+      td
+        &.sorting_1
+          :background-color #ffc4c4
+        &.sorting_2
+          :background-color = !pink
+        &.sorting_3
+          :background-color = !pink
+    &.gradeU
+      td
+        &.sorting_1
+          :background-color #c4c4c4
+        &.sorting_2
+          :background-color = !silver_red
+        &.sorting_3
+          :background-color = !silver_red
+  &.even
+    &.gradeA
+      td
+        &.sorting_1
+          :background-color #d5ffd5
+        &.sorting_2
+          :background-color = !light_light_green
+        &.sorting_3
+          :background-color = !light_light_green
+    &.gradeC
+      td
+        &.sorting_1
+          :background-color #d5d5ff
+        &.sorting_2
+          :background-color = !light_light_blue
+        &.sorting_3
+          :background-color = !light_light_blue
+    &.gradeX
+      td
+        &.sorting_1
+          :background-color #ffd5d5
+        &.sorting_2
+          :background-color = !light_pink
+        &.sorting_3
+          :background-color = !light_pink
+    &.gradeU
+      td
+        &.sorting_1
+          :background-color #d5d5d5
+        &.sorting_2
+          :background-color = !light_silver_red
+        &.sorting_3
+          :background-color = !light_silver_red
+
+  // Row highlighting example
+.ex_highlight #example tbody tr.even:hover, #example tbody tr.even td.highlighted
+  :background-color #ecffb3
+
+.ex_highlight #example tbody tr.odd:hover, #example tbody tr.odd td.highlighted
+  :background-color #e6ff99
+

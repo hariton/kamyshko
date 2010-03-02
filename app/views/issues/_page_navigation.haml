@@ -1,0 +1,4 @@
+%div.page-title
+  == Страница #{@page.number}
+%div.page-buttons
+  = render :partial => 'common/page_buttons', :locals => { :page => @page }

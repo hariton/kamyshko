@@ -1,0 +1,34 @@
+en:
+  flash:
+    access_restriction: 'Извините, у вас нет прав для доступа к этой странице'
+  source:
+    flash:
+      notice:
+        create: 'Источник успешно сохранен'
+        update: 'Source was successfully updated.'
+      error:
+        create: 'Источник не может быть добавлен'
+  issue:
+    flash:
+      notice:
+        create: 'Выпуск поставлен в очередь на загрузку'
+        update: 'Issue was successfully updated.'
+      error:
+        create: 'Во время добавления выпуска возникал проблема'
+  cart:
+    flash:
+      notice:
+        empty: 'Корзина очищена'
+        add_page: 'Страница добавлена в корзину'
+        remove_page: 'Страница удалена из корзины'
+      error:
+        duplicate: 'Эта страница уже есть в корзине'
+  project:
+    flash:
+      notice:
+        create: 'Project was successfully created.'
+        update: 'Project was successfully updated.'
+      error:
+  page:
+  role:
+  user:

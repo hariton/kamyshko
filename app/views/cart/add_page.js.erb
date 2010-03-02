@@ -1,0 +1,17 @@
+$('#menu').html("<%= escape_javascript(render :partial => 'common/top_menu') %>");
+$('.zoom').zoom(zoom_options);
+
+<%# страницы выпуска -%>
+$('#pages .current-page').addClass('cart-charged');
+switch_add_page_button($('#page-navigation .ui-icon-cart'));
+
+<%# страница поиска -%>
+switch_add_page_button($('#page_<%= @page.id -%> .ui-icon-cart'));
+
+function switch_add_page_button(button) {
+  button.attr('href', '<%= remove_from_cart_path(@page) %>');
+  button.title = 'Удалить страницу из корзины';
+  button.removeClass('add_page');
+  button.addClass('cart-charged');
+  button.addClass('remove_page');
+};

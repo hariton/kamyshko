@@ -1,0 +1,14 @@
+%div.result
+  %div.text
+    %div.excerpts
+      = page.excerpts( current_user.search_query.query )
+    %div.page-title
+      = link_to page.source_string, source_issue_path(page.issue.source, page.issue, :page => page.number)
+    %div.page-buttons
+      = render :partial => 'common/page_buttons', :locals => { :page => page }
+    %div#on_top{:style => 'position:absolute;top:780px;left:470px;'}
+      %a.icon.ui-icon-circle-arrow-n{:href => '#top'}
+      %a.field-title{:href => '#top'}
+        Наверх
+  %div.picture
+    = link_to image_tag(page.image_url('medium'), {:title => page.source_string}), page.image_url('big'), { :class => 'zoom', :rel => page.image_url('big') }

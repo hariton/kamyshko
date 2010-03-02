@@ -1,0 +1,59 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: god
+# Required-Start: $all
+# Required-Stop: $all
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: God
+### END INIT INFO
+
+NAME=god
+DESC=god
+
+GOD_CONF=/etc/god/god.conf
+GOD_PID=/var/run/god.pid
+GOD_LOG=/var/log/god.log
+GOD_LOGLEVEL=info # варианты: debug, info, warn, error, fatal
+
+set -e
+
+# Make sure the binary and the config file are present before proceeding
+test -x /usr/bin/god || exit 0
+
+. /lib/lsb/init-functions
+
+RETVAL=0
+
+case "$1" in
+start)
+  echo -n "Starting $DESC: "
+  /usr/bin/god -c "$GOD_CONF" -P "$GOD_PID" --no-syslog -l "$GOD_LOG" --log-level $GOD_LOGLEVEL
+  RETVAL=$?
+  echo "$NAME."
+  ;;
+stop)
+  echo -n "Stopping $DESC: "
+  kill `cat /var/run/god.pid`
+  RETVAL=$?
+  echo "$NAME."
+  ;;
+restart)
+  echo -n "Restarting $DESC: "
+  kill `cat /var/run/god.pid`
+  /usr/bin/god -c "$GOD_CONF" -P "$GOD_PID" --no-syslog -l "$GOD_LOG" --log-level $GOD_LOGLEVEL
+  RETVAL=$?
+  echo "$NAME."
+  ;;
+status)
+  /usr/bin/god status
+  RETVAL=$?
+  ;;
+*)
+  echo "Usage: god {start|stop|restart|status}"
+  exit 1
+  ;;
+esac
+
+exit $RETVAL

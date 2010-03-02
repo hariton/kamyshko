@@ -1,0 +1,8 @@
+%h1 New page
+
+- form_for(@page) do |f|
+  = f.error_messages
+  %p
+    = f.submit 'Create', :class => 'submit'
+
+= link_to 'Back', pages_path

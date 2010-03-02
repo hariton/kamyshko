@@ -1,0 +1,67 @@
+- first_day     = Date.new(calendar.year, calendar.month, 1).to_time
+- last_day      = first_day.end_of_month
+- days_in_month = Time.days_in_month(first_day.month, first_day.year)
+- prev_month    = first_day.months_ago(1)
+- next_month    = first_day.months_since(1)
+%div#calendar
+  %div#calendar_wrap
+    %table{:summary => 'Calendar'}
+      %caption
+        = date_link( calendar.prev_month_active_date, '←', '<span>←</span>' )
+        = t(I18n.locale == :ru ? 'date.standalone_month_names' : 'date.month_names')[first_day.month]
+        = date_link( calendar.next_month_active_date, '→', '<span>→</span>' )
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        = date_link( calendar.prev_year_active_date, '←', '<span>←</span>' )
+        = calendar.year.to_s
+        = date_link( calendar.next_year_active_date, '→', '<span>→</span>' )
+      %thead
+        %tr
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[1]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[2]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[3]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[4]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[5]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[6]
+          %th{:width => '25'}
+            = (t 'date.abbr_day_names')[0]
+      %tbody
+        == <tr>
+        -# дни первой недели, которые относятся к предыдущему месяцу (но рисуются в таблице текущего месяца)
+        - padding = (first_day.wday + 6) % 7
+        - padding.times do
+          %td.gap<
+            &nbsp;
+        - counter = padding + 1
+        - 1.upto(days_in_month) do |day_in_month|
+          - this_date = Date.new(calendar.year, calendar.month, day_in_month)
+          - td_class = []
+          - td_class << 'today' if calendar.highlight_today and Time.now.to_date == this_date
+          - td_class << 'highlight' if calendar.highlight_dates.include?(day_in_month)
+          - td_class << 'active' if calendar.active_dates.keys.include?(day_in_month)
+          - td_class << 'current' if calendar.current_date == this_date
+          %td{ :id => "date_#{day_in_month}", :class => td_class.join(' ') }
+            - if td_class.include?('current')
+              = day_in_month
+            - elsif td_class.include?('active')
+              - url = calendar.active_dates[day_in_month]
+              = url
+            - else
+              = day_in_month
+          - if counter % 7 == 0
+            == </tr>
+          - counter = counter + 1
+        -# дни последней недели, которые относятся к следующему месяцу (но рисуются в таблице текущего месяца)
+        - padding = 7 - last_day.wday
+        - if padding != 0 and padding != 7
+          - padding.times do
+            %td.gap<
+              &nbsp;
+          == </tr>

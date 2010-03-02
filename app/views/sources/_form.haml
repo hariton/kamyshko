@@ -1,0 +1,10 @@
+- form_for(@source, :html => { :id => 'source_form' }) do |f|
+  = f.error_messages
+  %div
+    = f.label :title, 'Название издания:'
+    = f.text_field :title
+  %div
+    = f.label :site_url, 'Сайт:'
+    = f.text_field :site_url
+  %div
+    = f.submit 'Сохранить', :class => 'submit'

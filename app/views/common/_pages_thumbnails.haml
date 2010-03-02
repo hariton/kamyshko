@@ -1,0 +1,16 @@
+%div#pages
+  - pages.in_groups_of(6) do |group_pages|
+    %div.row
+      - for page in group_pages
+        - if page
+          - page_position = page.send(page.position_column)
+          - current_page_position = current_page.send(current_page.position_column)
+          %div.page{:id => "page_#{page_position}"}
+            - css_classes = ''
+            - css_classes << 'current-page' if page_position == current_page_position
+            - css_classes << ' cart-charged' if cart.pages.include?(page)
+            %div.page-number{ :class => css_classes}
+              = page_position
+            - page = page.page if [ProjectPage, CartPage].include?( page.class )
+            - path = params[:controller] == 'cart' ?  cart_path(:page => page_position) : source_issue_path(page.issue.source, page.issue, :page => page.number)
+            = link_to image_tag( page.image_url('small'), {:border => 0, :width => 95, :height => 123, :title => page.source_string } ), path

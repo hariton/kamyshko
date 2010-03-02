@@ -1,0 +1,27 @@
+- content_for :column2 do
+  %div#screen
+    = render :partial => 'common/page_medium_image', :locals => { :page => @page }
+%div#header
+  %div#issue-navigation
+    %div#zzz
+      %div#title
+        = @source.title + ', '
+        %span#number
+          == №#{@issue.number}
+      %div#issue-buttons
+        = link_to '', [@source, @issue], :confirm => 'Вы действительно хотите удалить выпуск?', :method => :delete, :class => 'icon ui-icon-trash', :title => 'Удалить выпуск'
+        = link_to '', edit_source_issue_path(@source, @issue), {:class => 'icon ui-icon-wrench', :title => 'Редактировать выпуск'}
+        = link_to '', new_source_issue_path(@source), {:class => 'icon ui-icon-circle-plus', :title => 'Добавить выпуск'}
+        - if @navigation_dates[:prev_date]
+          = date_link( @navigation_dates[:prev_date], '', '', {:class => 'icon ui-icon-circle-arrow-w', :title => 'Предыдущий выпуск'} )
+        - else
+          %span.icon.ui-icon-circle-arrow-w{:title => 'Предыдущий выпуск'}
+        - if @navigation_dates[:next_date]
+          = date_link( @navigation_dates[:next_date], '', '', {:class => 'icon ui-icon-circle-arrow-e', :title => 'Следующий выпуск'} )
+        - else
+          %span.icon.ui-icon-circle-arrow-e{:title => 'Следующий выпуск'}
+    %div#calendar
+      = render 'common/calendar', :locals => { :calendar => @calendar }
+  %div#page-navigation
+    = render 'page_navigation'
+= render :partial => 'common/pages_thumbnails', :locals => { :pages => @issue.pages, :current_page => @page }

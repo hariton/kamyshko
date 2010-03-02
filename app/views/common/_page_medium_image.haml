@@ -1,0 +1,14 @@
+- if page.class == CartPage
+  - cart_page = page
+  - next_page = cart_page.last? ? cart.cart_pages.first : cart_page.next
+  - prev_page = cart_page.first? ? cart.cart_pages.last : cart_page.prev
+  - next_page_path = cart_path(:page => next_page.position)
+  - prev_page_path = cart_path(:page => prev_page.position)
+  - page = cart_page.page
+- elsif page.class == ProjectPage
+- else
+  - next_page = page.last? ? page.issue.pages.first : page.next
+  - prev_page = page.first? ? page.issue.pages.last : page.prev
+  - next_page_path = source_issue_path(next_page.issue.source, next_page.issue, :page => next_page.number)
+  - prev_page_path = source_issue_path(prev_page.issue.source, prev_page.issue, :page => prev_page.number)
+= link_to image_tag(page.image_url('medium'), {:title => page.source_string}), next_page_path, { :class => 'zoom', :rev => prev_page_path, :rel => page.image_url('big') }

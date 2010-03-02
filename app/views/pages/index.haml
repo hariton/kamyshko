@@ -1,0 +1,14 @@
+%h1 Listing pages
+
+%table
+
+- @pages.each do |page|
+  %tr
+    %td
+      = link_to 'Show', page
+    %td
+      = link_to 'Edit', edit_page_path(page)
+    %td
+      = link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New page', new_page_path

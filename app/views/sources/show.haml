@@ -1,0 +1,9 @@
+%h1= @source.title
+
+- for issue in @source.issues.active
+  %p
+    = link_to issue.date, [@source, issue]
+
+= link_to 'Редактировать', edit_source_path(@source)
+|
+= link_to 'К списку источников', sources_path

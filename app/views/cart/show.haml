@@ -1,0 +1,20 @@
+- content_for :column2 do
+  %div#screen
+    - if @cart_page
+      = render :partial => 'common/page_medium_image', :locals => {:page => @cart_page}
+%div#header
+  %div#issue-navigation
+    %div#issue-title
+      Корзина
+    - if cart.pages.empty?
+      %div
+        Ваша корзина пуста
+    - else
+      %div#issue-buttons
+        = link_to '', cart.zipfile_url, :class => 'icon ui-icon-suitcase', :title => 'Сохранить корзину в zip-файле'
+        = link_to '', empty_cart_path, :confirm => 'Вы действительно хотите очистить корзину?', :method => :delete, :class => 'icon ui-icon-trash', :title => 'Очистить корзину'
+  - if @cart_page
+    %div#page-navigation
+      = render 'page_navigation'
+- if @cart_page
+  = render :partial => 'common/pages_thumbnails', :locals => { :pages => cart.cart_pages, :current_page => @cart_page }

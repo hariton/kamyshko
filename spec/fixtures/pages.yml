@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  issue: 
+  number: 1
+  pic_file_size: 1
+  text: MyText
+
+two:
+  issue: 
+  number: 1
+  pic_file_size: 1
+  text: MyText

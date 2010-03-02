@@ -1,0 +1,92 @@
+В этой директории - пример настройки god для мониторинга следующих задач:
+  - delayed_jobs
+  - searchd
+  (можно сделать мониторинг чего-нибудь еще по аналогии)
+
+Файлы из текущей директории, должны быть скопированы в директорию /etc:
+  cp ./init.d/god /etc/init.d/god
+  mkdir /etc/god/
+  cp ./god/god.conf /etc/god/god.conf
+  cp ./god/kamyshko.god /etc/god/kamyshko.god
+  cp ./god/kamyshko.yml /etc/god/kamyshko.yml
+
+В файлы kamyshko.yml, god.conf нужно внести правильную информацию.
+
+  kamyshko.yml
+    user: xxxxx
+    group: yyyyyy
+    (от имени какого пользователя-группы, будут выполняться задания)
+
+  god.conf
+    настройки SMTP для отправки email-сообщения
+    от имени кого будут отправляться соотщения
+    кому
+
+При необходимости, можно откорректировать /etc/init.d/god:
+  GOD_PID=/var/run/god.pid
+  GOD_LOG=/var/log/god.log
+  GOD_LOGLEVEL=info
+
+Добавление демона в загрузку и работа с ним делается стандартным образом:
+    update-rc.d god defaults
+    invoke-rc.d god start
+    invoke-rc.d god status
+    invoke-rc.d god stop
+  и т.п.
+
+--
+NB! GOD_LOGLEVEL установленный в info очень быстро наполняет лог. Нужно
+не забывать ставить под контроль logrotate.d логи, производимые любой
+программой, но god'а (в loglevel выше warn) это касается особенно.
+
+--
+NB! даны настройки для отправку писем через gmail для домена включенного в Google Apps
+
+Для отправки через gmail нужно также установить gem-пакет tlsmail
+
+информация по god:
+  http://god.rubyforge.org/
+
+--
+NB! Rake-задачи thinking_sphinx'а пересоздают sphinx-конфиги на основе
+собственного конфига (config/sphinx.yml).
+
+God ничего не знает о config/sphinx.yml - он напрямую пользуется конфигами
+sphinx'а. Поэтому если изменить конфиг thinking_sphinx'а
+(config/sphinx.yml), но не перегенерировать sphinx-конфиги, то god будет
+пользоваться устаревшими настройками.
+
+Поэтому нужно усвоить простое правило: если изменяется config/sphinx.yml,
+нужно выполнить команду
+  rake ts:config
+
+Также нужно помнить о том, что для каждой среды выполнения thinking_sphinx
+создает отдельный конфиг:
+  rake ts:config
+  rake ts:config RAILS_ENV=production
+  rake ts:config RAILS_ENV=test
+(будут созданы три файла)
+
+А также иметь ввиду, что config/sphinx.yml находится под контролем версий
+(в отличе от sphinx-конфигов, которые формируются налету)
+
+--
+схема работы:
+
+Для каждого rails-приложения создается два файла (на примере
+rails-приложения kamyshko):
+  /etc/god/kamyshko.yml
+  /etc/god/kamyshko.god
+
+Сначала /etc/init.d/god загружает god, передавая ему в качестве конфига
+файл /etc/god/god.conf, который содержит общесистемные god-настройки.
+Настройки считываются и загружаются файлы /etc/god/*.god (том числе
+kamyshko.god, для нашего случая).
+
+В свою очередь, настройки для kamyshko.god, берутся из файла kamyshko.yml
+
+Таким образом для мониторинга другого rails-приложения достаточно создать
+и правильно настроить пару файлов:
+  /etc/god/some_rails_app.yml
+  /etc/god/some_rails_app.god
+
