@@ -1,2 +1,0 @@
-class VerySimpleForTests
-end

@@ -25,3 +25,5 @@ coverage/*
 *.orig.*
 *.log
 *.css
+.bundle/environment.rb
+Gemfile.lock
