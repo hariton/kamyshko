@@ -6,16 +6,6 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-# Hijack rails initializer to load the bundler gem environment before loading the rails environment.
-Rails::Initializer.module_eval do
-  alias load_environment_without_bundler load_environment
-
-  def load_environment
-    Bundler.require_env configuration.environment
-    load_environment_without_bundler
-  end
-end
-
 Rails::Initializer.run do |config|
   # все зависимости переместились в ../Gemfile
 
@@ -47,3 +37,5 @@ LOADER_LOGGER = LoaderLogger.new(logfile)
 
 SOURCE_BASE_FILES_DIR = 'public/sources'
 USER_ZIP_FILE_DIR = 'public/zip'
+
+Footnotes::Filter.prefix = 'gvim://open?url=file://%s&amp;line=%d&amp;column=%d' if defined?(Footnotes) && RUBY_PLATFORM.include?('linux')
