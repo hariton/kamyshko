@@ -1,0 +1,20 @@
+base: &defaults
+  adapter: postgresql
+  encoding: utf8
+  host: 127.0.0.1
+  port: 5432
+  pool: 10
+  username: <%= user %>
+  password: <%= Capistrano::CLI.ui.ask('Enter database password: ') %>
+
+development:
+  database: <%= application %>_development
+  <<: *defaults
+
+test:
+  database: <%= application %>_test
+  <<: *defaults
+
+production:
+  database: <%= application %>_production
+  <<: *defaults
