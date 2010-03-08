@@ -26,7 +26,7 @@ role :web, host
 role :app, host
 role :db,  host, :primary => true
 
-set :shared_children, shared_children + %w(public/sources public/zip db/sphinx)
+set :shared_children, shared_children + %w(inbox public/sources public/zip db/sphinx)
 
 after 'deploy:setup',           'db:setup' unless fetch(:skip_db_setup, false)
 after 'deploy:setup',           'gems:install_unbundled_gems'

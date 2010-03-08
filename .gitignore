@@ -27,3 +27,5 @@ coverage/*
 *.css
 .bundle/environment.rb
 Gemfile.lock
+public/zip
+inbox
