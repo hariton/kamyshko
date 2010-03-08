@@ -34,5 +34,6 @@ after 'deploy:update_code',     'deploy:symlink_shared'
 after 'deploy:update_code',     'gems:bundle_new_release'
 after 'deploy:update_code',     'thinking_sphinx:configure', 'thinking_sphinx:stop', 'thinking_sphinx:start'
 #after 'deploy:update_code',     'deploy:update_crontab'
+after 'deploy:update_code',     'sass:update'
 after 'deploy:finalize_update', 'db:symlink'
 
