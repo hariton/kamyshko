@@ -11,4 +11,4 @@
   - prev_page = page.first? ? page.issue.pages.last : page.prev
   - next_page_path = source_issue_path(next_page.issue.source, next_page.issue, :page => next_page.number)
   - prev_page_path = source_issue_path(prev_page.issue.source, prev_page.issue, :page => prev_page.number)
-= link_to image_tag(page.image_url('medium'), {:title => page.source_string}), next_page_path, { :class => 'zoom', :rev => prev_page_path, :rel => page.image_url('big') }
+= link_to image_tag(page.image_url('medium'), {:title => page.source_string, :border => 0}), next_page_path, { :class => 'zoom', :rev => prev_page_path, :rel => page.image_url('big') }
