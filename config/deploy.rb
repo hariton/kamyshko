@@ -9,6 +9,7 @@ load 'config/deploy/crontab.rb'
 load 'config/deploy/rla.rb'
 load 'config/deploy/log.rb'
 load 'config/deploy/db.rb'
+load 'config/deploy/sass.rb'
 
 def rake(*tasks)
   rails_env = fetch(:rails_env, 'production')
