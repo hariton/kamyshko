@@ -33,6 +33,8 @@ gem 'pdf-reader',                '0.7.7',  :require => 'pdf/reader'             
 gem 'rubyzip',                   '0.9.1',  :require => 'zip/zipfilesystem'                    # http://rubyzip.sourceforge.net/
 gem 'request-log-analyzer',      '1.6.2'                                                      # http://github.com/wvanbergen/request-log-analyzer
 gem 'awesome_nested_set',        '1.4.3'                                                      # http://github.com/collectiveidea/awesome_nested_set/tree/master
+gem 'memcache-client',           '1.8.0',  :require => 'memcache'                             # http://github.com/mperham/memcache-client
+gem 'system_timer',              '1.0'                                                        # http://rubygems.org/gems/system_timer
 
 group :development do
   gem 'railroad'
@@ -50,5 +52,4 @@ group :test do
 end
 
 group :production do
-  gem 'memcache-client',         '1.8.0', :require => 'memcache'                              # http://github.com/mperham/memcache-client
 end
