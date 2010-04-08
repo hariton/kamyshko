@@ -27,4 +27,6 @@ config.log_level = :debug
 # Enable threaded mode
 # config.threadsafe!
 
+config.cache_store = :mem_cache_store, 'localnost:11211', {:debug => true, :benchmarking => true, :readonly => false}
+
 File.umask 0002

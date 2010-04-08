@@ -20,35 +20,36 @@
       %th
         &nbsp;
   %tbody
-    - sources.each do |source|
-      %tr
-        %td
-          - if source.issue_last_updated and (Time.now - source.issue_last_updated.updated_at < 86400)
-            = link_to 'NEW', [source, source.issue_last_updated], :class => 'new'
-          - else
-            &nbsp;
-        %td.buttons
-          - permitted_to? :create, :issues do
-            = link_to '', new_source_issue_path(source), {:class => 'icon ui-icon-plus', :title => 'Добавить новый выпуск'}
-            =# :title => 'Добавить'
-        %td.sorted
-          - truncate_title = truncate(source.title, :length => 30)
-          - if source.issue_last
-            = link_to truncate_title, [source, source.issue_last]
-          - else
-            = link_to truncate_title, new_source_issue_path(source), :confirm => "Издание \"#{source.title}\" не содержит ни одного выпуска. Хотите заложить новый выпуск?"
-          = link_to_if( source.site_url, '', source.site_url, {:class => 'external-link'} ) {}
-        %td.sorted
-          - if source.issue_first
-            = link_to Russian::strftime(source.issue_first.date), [source, source.issue_first]
-          - else
-            &nbsp;
-        %td.sorted
-          - if source.issue_last
-            = link_to Russian::strftime(source.issue_last.date), [source, source.issue_last]
-          - else
-            &nbsp;
-        %td.buttons
-          - permitted_to? :edit, :sources do
-            = link_to '', edit_source_path(source), {:class => 'icon ui-icon-wrench', :title => 'Редактирование источника'}
-            =# :title => 'Редактировать'
+    - cache sources do
+      - sources.each do |source|
+        %tr
+          %td
+            - if source.issue_last_updated and (Time.now - source.issue_last_updated.updated_at < 86400)
+              = link_to 'NEW', [source, source.issue_last_updated], :class => 'new'
+            - else
+              &nbsp;
+          %td.buttons
+            - permitted_to? :create, :issues do
+              = link_to '', new_source_issue_path(source), {:class => 'icon ui-icon-plus', :title => 'Добавить новый выпуск'}
+              =# :title => 'Добавить'
+          %td.sorted
+            - truncate_title = truncate(source.title, :length => 30)
+            - if source.issue_last
+              = link_to truncate_title, [source, source.issue_last]
+            - else
+              = link_to truncate_title, new_source_issue_path(source), :confirm => "Издание \"#{source.title}\" не содержит ни одного выпуска. Хотите заложить новый выпуск?"
+            = link_to_if( source.site_url, '', source.site_url, {:class => 'external-link'} ) {}
+          %td.sorted
+            - if source.issue_first
+              = link_to Russian::strftime(source.issue_first.date), [source, source.issue_first]
+            - else
+              &nbsp;
+          %td.sorted
+            - if source.issue_last
+              = link_to Russian::strftime(source.issue_last.date), [source, source.issue_last]
+            - else
+              &nbsp;
+          %td.buttons
+            - permitted_to? :edit, :sources do
+              = link_to '', edit_source_path(source), {:class => 'icon ui-icon-wrench', :title => 'Редактирование источника'}
+              =# :title => 'Редактировать'

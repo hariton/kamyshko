@@ -1,13 +1,15 @@
-
-development: &production_settings
+defaults: &defaults
   app_name: kamyshko
-  user: xxxxx
-  group: yyyyyy
-  app_root: '/var/webapps/kamyshko'
+  user: webapps
+  group: developers
+  app_root: '/var/webapps/kamyshko/current'
   sphinx_bin_path: '/usr/local/bin'
 
+development:
+  <<: *defaults
+
 test:
-  << *production_settings
+  <<: *defaults
 
 production:
-  << *production_settings
+  <<: *defaults

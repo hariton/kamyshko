@@ -26,7 +26,12 @@ class ApplicationController < ActionController::Base
 
     def sources( ids = [], order_by = 'title' )
       return @sources if defined?(@sources)
-      @sources = ids.any? ? Source.find(ids, :order => order_by) : Source.all(:order => order_by)
+      @sources = \
+        if ids.any? and ids.size != Source.count
+          Source.find(ids, :order => order_by)
+        else
+          Source.all(:order => order_by)
+        end
     end
 
 end

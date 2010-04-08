@@ -14,8 +14,6 @@ class Page < ActiveRecord::Base
 
   before_save :generate_digest
 
-
-
   define_index do
 
     # fields
