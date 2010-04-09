@@ -3,6 +3,7 @@ include ActionView::Helpers::TagHelper
 
 class IssuesController < ApplicationController
   before_filter :login_required
+  cache_sweeper :source_sweeper, :only => [:create, :update, :destroy]
 
   helper_method :date_link, :navigation_dates
 

@@ -1,6 +1,7 @@
 class SourcesController < ApplicationController
   before_filter :login_required
   filter_resource_access
+  cache_sweeper :source_sweeper, :only => [:create, :update, :destroy]
 
   def index
     redirect_to :controller => 'home', :action => 'index'

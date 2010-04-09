@@ -27,6 +27,6 @@ config.log_level = :debug
 # Enable threaded mode
 # config.threadsafe!
 
-config.cache_store = :mem_cache_store, 'localhost:11211', {:debug => true, :benchmarking => true, :readonly => false}
+config.cache_store = :mem_cache_store, 'localhost:11211', {:namespace => 'kamyshko'}
 
 File.umask 0002
