@@ -37,8 +37,8 @@ gem 'memcache-client',           '1.8.0',  :require => 'memcache'               
 gem 'system_timer',              '1.0'                                                        # http://rubygems.org/gems/system_timer
 
 group :development do
-  gem 'railroad'
-  gem 'hirb'
+  gem 'railroad',                '0.5.0'
+  gem 'hirb',                    '0.3.1'
   gem 'ruby-prof',               '0.8.1'                                                      # http://github.com/jeremy/ruby-prof
   gem 'easy-prof',               '1.0.0',   :require => 'easy_prof'                           # http://github.com/kpumuk/easy-prof
   gem 'ruby-debug'
