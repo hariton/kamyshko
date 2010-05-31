@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Source < ActiveRecord::Base
   has_many :issues
 
@@ -26,7 +28,7 @@ class Source < ActiveRecord::Base
   end
 
   def files_dir_name(title = self.title)
-    Russian::transliterate(title).downcase.squeeze.strip.gsub(/ /, '_').gsub(/\//, '-').gsub(/["']/, '')
+    ::Russian::transliterate(title).downcase.squeeze.strip.gsub(/ /, '_').gsub(/\//, '-').gsub(/["']/, '')
   end
 
   private

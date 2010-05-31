@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SearchQueriesController < ApplicationController
   before_filter :login_required
 

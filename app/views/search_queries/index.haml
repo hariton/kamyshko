@@ -3,7 +3,7 @@
     %div#entries
       Результат:
       %em{:style => 'font-weight:bold;'}= @pages.total_entries
-      = Russian.p(@pages.total_entries , 'статья', 'статьи', 'статей')
+      = ::Russian.p(@pages.total_entries , 'статья', 'статьи', 'статей')
     %div#time
       Время обработки запроса:
       %em{:style => 'font-weight:bold;'}== #{@pages.results[:time]} сек.

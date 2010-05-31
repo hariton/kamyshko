@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'digest/md5'
 
 class Page < ActiveRecord::Base
@@ -63,7 +65,7 @@ class Page < ActiveRecord::Base
   end
 
   def source_string
-    "#{self.issue.source.title}, №#{self.issue.number}, #{Russian::strftime(self.issue.date)}, стр. #{self.number}"
+    "#{self.issue.source.title}, №#{self.issue.number}, #{::Russian::strftime(self.issue.date)}, стр. #{self.number}"
   end
 
   alias prev higher_item

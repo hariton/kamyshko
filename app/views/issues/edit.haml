@@ -7,6 +7,6 @@
     = f.text_field :number, :size => 5, :value => @issue.number
   %div
     = f.label :date, 'Дата выпуска:'
-    = f.text_field :date, :size => 9, :value => Russian::strftime(@issue.date)
+    = f.text_field :date, :size => 9, :value => ::Russian::strftime(@issue.date)
   %div
     = f.submit 'Сохранить', :class => 'submit'

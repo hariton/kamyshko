@@ -41,12 +41,12 @@
             = link_to_if( source.site_url, '', source.site_url, {:class => 'external-link'} ) {}
           %td.sorted
             - if source.issue_first
-              = link_to Russian::strftime(source.issue_first.date), [source, source.issue_first]
+              = link_to ::Russian::strftime(source.issue_first.date), [source, source.issue_first]
             - else
               &nbsp;
           %td.sorted
             - if source.issue_last
-              = link_to Russian::strftime(source.issue_last.date), [source, source.issue_last]
+              = link_to ::Russian::strftime(source.issue_last.date), [source, source.issue_last]
             - else
               &nbsp;
           %td.buttons

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'core_extensions'
 require 'load_issue_job'
 
@@ -129,20 +131,12 @@ class Issue < ActiveRecord::Base
 
       FileUtils.cp(image_path, File.join(dir_images_big, target_fn))
 
-      image =  Magick::Image.read( image_path ).first
+      image = MiniMagick::Image.from_file(image_path)
+      image.resize '685x1000>'
+      image.write(path_images_medium)
 
-      # XXX код дублируется, исправить!
-      path_images_medium = File.join(dir_images_medium, target_fn)
-      thumb = image.change_geometry!("#{685}x#{1000}>") do |ncols, nrows, img|
-       img.resize!(ncols, nrows)
-      end
-      thumb.write(path_images_medium)
-
-      path_images_small = File.join(dir_images_small, target_fn)
-      thumb = image.change_geometry!("#{95}x#{160}>") do |ncols, nrows, img|
-       img.resize!(ncols, nrows)
-      end
-      thumb.write(path_images_small)
+      image.resize '95x160>'
+      image.write(path_images_small)
 
     end
 

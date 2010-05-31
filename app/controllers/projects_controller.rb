@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ProjectsController < ApplicationController
   before_filter :login_required
   filter_resource_access
