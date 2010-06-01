@@ -20,4 +20,9 @@ namespace :db do
     deploy.migrate
   end
 
+  desc 'db:load_files'
+  task :load_files do
+    rake 'db:load_files'
+  end
+
 end

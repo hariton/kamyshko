@@ -17,9 +17,7 @@ namespace :gems do
   desc 'bundle_new_release'
   task :bundle_new_release, :roles => :web, :except => { :no_release => true } do
     gems.symlink_vendor
-    # run "cd #{release_path} && bundle unlock"
     run "cd #{release_path} && bundle install --relock"
-    # run "cd #{release_path} && bundle lock"
   end
 
 end
