@@ -1,18 +1,18 @@
 defaults: &defaults
   dirs:
-    # отсюда берутся файлы:
-    inbox: '/var/webapps/kamyshko/inbox'
-    # сюда перемещаются обработанные файлы:
-    backup: '/var/webapps/kamyshko/inbox/backup'
+    # files are taken from this directory
+    inbox: '/var/webapps/kamyshko/current/inbox'
+    # processed files are moved here
+    backup: '/var/webapps/kamyshko/current/inbox/backup'
     faults:
-      # файлы, для которых не нашлось пары (pdf без txt, txt без pdf)
-      orphans: '/var/webapps/kamyshko/inbox/faults/orphans'
-      # имя файла не соответствует стандарту
-      badnamed: '/var/webapps/kamyshko/inbox/faults/badnamed'
-      # этот выпуск уже есть в базе
-      duplicates: '/var/webapps/kamyshko/inbox/faults/duplicates'
-      # ошибка во время сохранения выпуска в базе
-      refused: '/var/webapps/kamyshko/inbox/faults/refused'
+      # files for which there were no couples (pdf without txt, txt without pdf)
+      orphans: '/var/webapps/kamyshko/current/inbox/faults/orphans'
+      # file name does not match the standard
+      badnamed: '/var/webapps/kamyshko/current/inbox/faults/badnamed'
+      # this issue is already in db
+      duplicates: '/var/webapps/kamyshko/current/inbox/faults/duplicates'
+      # error while saving issue in db
+      refused: '/var/webapps/kamyshko/current/inbox/faults/refused'
 
 development:
   <<: *defaults
