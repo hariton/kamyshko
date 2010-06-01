@@ -13,6 +13,7 @@ config/s3_credentials.yml
 db/*
 !db/migrate
 !db/seeds.rb
+!db/sources.yml
 public/cache/**/*
 public/sources/**/*
 public/dispatch.*
