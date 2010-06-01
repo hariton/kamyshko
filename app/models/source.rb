@@ -28,7 +28,7 @@ class Source < ActiveRecord::Base
   end
 
   def files_dir_name(title = self.title)
-    ::Russian::transliterate(title).downcase.squeeze.strip.gsub(/ /, '_').gsub(/\//, '-').gsub(/["']/, '')
+    ::Russian::transliterate(title).downcase.squeeze.strip.gsub(/ /, '_').gsub(/\//, '-').gsub(/["'!]/, '').gsub(/\&/, 'and')
   end
 
   private

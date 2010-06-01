@@ -15,8 +15,8 @@ class CreateDelayedJobs < ActiveRecord::Migration
     end
 
   end
-  
+
   def self.down
-    drop_table :delayed_jobs  
+    drop_table :delayed_jobs
   end
 end

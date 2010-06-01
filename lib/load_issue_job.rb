@@ -1,3 +1,7 @@
+# encoding: utf-8
+
+require 'issue'
+
 class LoadIssueJob < Struct.new(:issue)
 
   def perform

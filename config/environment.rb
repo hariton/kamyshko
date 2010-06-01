@@ -30,6 +30,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+require 'core_extensions'
+
 require 'loader_logger'
 logfile = File.open(RAILS_ROOT + '/log/loader.log', 'a')
 logfile.sync = true

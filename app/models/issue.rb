@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-require 'core_extensions'
-require 'load_issue_job'
-
 class Issue < ActiveRecord::Base
   belongs_to :source
   has_many :pages, :order => :number
@@ -57,15 +54,16 @@ class Issue < ActiveRecord::Base
 
   def save_files
 
-    if not @pdf_file
+    if not pdf_file
       logger.debug "Absent @pdf_file"
-    elsif not @txt_file
+    elsif not txt_file
       logger.debug "Absent @txt_file"
     else
       cleanup
       files_dir_make
       save_pdf
       save_text
+      require 'load_issue_job'
       Delayed::Job.enqueue(LoadIssueJob.new(self))
     end
 
@@ -133,9 +131,11 @@ class Issue < ActiveRecord::Base
 
       image = MiniMagick::Image.from_file(image_path)
       image.resize '685x1000>'
+      path_images_medium = File.join(dir_images_medium, target_fn)
       image.write(path_images_medium)
 
       image.resize '95x160>'
+      path_images_small = File.join(dir_images_small, target_fn)
       image.write(path_images_small)
 
     end

@@ -25,20 +25,8 @@ gem 'ts-delayed-delta',          '1.1.0',  :require => 'thinking_sphinx/deltas/d
 gem 'gravtastic',                '2.2.0'                                                      # http://github.com/chrislloyd/gravtastic
 gem 'rubyzip',                   '0.9.4',  :require => 'zip/zipfilesystem'                    # http://rubyzip.sourceforge.net/
 gem 'request-log-analyzer',      '1.7.0'                                                      # http://github.com/wvanbergen/request-log-analyzer
-gem 'awesome_nested_set',        '1.4.3'                                                      # http://github.com/collectiveidea/awesome_nested_set/tree/master
 gem 'memcache-client',           '1.8.3',  :require => 'memcache'                             # http://github.com/mperham/memcache-client
-# gem 'state_machine',           '0.9.2'                                                      # http://github.com/pluginaweek/state_machine
-# gem 'system_timer',            '1.0'                                                        # http://rubygems.org/gems/system_timer
-# gem 'Ascii85',                 '1.0.0',  :require => 'ascii85'                              # требуется для pdf-reader'а, http://ascii85.rubyforge.org/
-# gem 'pdf-reader',              '0.8.5',  :require => 'pdf/reader'                           # http://github.com/yob/pdf-reader
-
-group :development do
-  gem 'railroad',                '0.5.0'                                                      # http://railroad.rubyforge.org/
-  gem 'hirb',                    '0.3.1'
-  # gem 'ruby-prof',             '0.8.1'                                                      # http://github.com/jeremy/ruby-prof
-  # gem 'easy-prof',             '1.0.0',   :require => 'easy_prof'                           # http://github.com/kpumuk/easy-prof
-  # gem 'ruby-debug'
-end
+gem 'system_timer',              '1.0'                                                        # http://rubygems.org/gems/system_timer
 
 group :test do
   gem 'test-unit',               '2.0.7'
@@ -46,7 +34,4 @@ group :test do
   gem 'rspec-rails',             '1.3.2'
   gem 'rcov',                    '0.9.8'
   gem 'shoulda',                 '2.10.3'                                                     # http://github.com/thoughtbot/shoulda
-end
-
-group :production do
 end

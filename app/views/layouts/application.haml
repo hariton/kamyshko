@@ -19,7 +19,7 @@
         %span
           - name = current_user.name || current_user.login
           = name
-        = image_tag current_user.gravatar_url(:size => 25, :default => 'monsterid'), {:width => 25, :height => 25, :alt => name}
+        = image_tag current_user.gravatar_url(:size => 25, :default => 'identicon'), {:width => 25, :height => 25, :alt => name}
       %div#menu
         = render :partial => 'common/top_menu'
       %div#flash{:class => flash[:notice] ? 'notice' : flash[:error] ? 'error' : ''}
