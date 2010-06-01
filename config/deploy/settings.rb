@@ -14,13 +14,12 @@ set :scm, 'git'
 set :repository, 'git@github.com:hariton/kamyshko.git'
 set :branch, 'master'
 set :deploy_via, :remote_cache
-# set :git_shallow_clone, true
-# set :git_shallow, 1
+set :git_shallow_clone, 1
 
 set :use_sudo, false
 set :keep_releases, 5
 
-set :bin_dir, '/opt/ruby-enterprise-1.8.7-2010.01/bin'
+set :bin_dir, '/usr/local/bin'
 
 role :web, host
 role :app, host
@@ -33,7 +32,7 @@ after 'deploy:setup',           'gems:install_unbundled_gems'
 after 'deploy:update_code',     'deploy:symlink_shared'
 after 'deploy:update_code',     'gems:bundle_new_release'
 after 'deploy:update_code',     'thinking_sphinx:configure', 'thinking_sphinx:stop', 'thinking_sphinx:start'
-#after 'deploy:update_code',     'deploy:update_crontab'
+after 'deploy:update_code',     'deploy:update_crontab'
 after 'deploy:update_code',     'sass:update'
 after 'deploy:finalize_update', 'db:symlink'
 

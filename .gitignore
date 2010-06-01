@@ -12,6 +12,7 @@ config/*.sphinx.conf
 config/s3_credentials.yml
 db/*
 !db/migrate
+!db/seeds.rb
 public/cache/**/*
 public/sources/**/*
 public/dispatch.*

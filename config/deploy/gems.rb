@@ -2,7 +2,7 @@ namespace :gems do
 
   desc 'install_unbundled_gems'
   task :install_unbundled_gems do
-    run("sudo #{bin_dir}/gem install bundler --version 0.9.9 --no-rdoc --no-ri --source=http://rubygems.org")
+    run("sudo #{bin_dir}/gem install bundler --no-rdoc --no-ri --source=http://rubygems.org")
   end
 
   desc 'symlink_vendor'
@@ -17,9 +17,9 @@ namespace :gems do
   desc 'bundle_new_release'
   task :bundle_new_release, :roles => :web, :except => { :no_release => true } do
     gems.symlink_vendor
-    #run "cd #{release_path} && bundle unlock"
-    run "cd #{release_path} && bundle install vendor/bundler_gems/"
-    #run "cd #{release_path} && bundle lock"
+    # run "cd #{release_path} && bundle unlock"
+    run "cd #{release_path} && bundle install --relock"
+    # run "cd #{release_path} && bundle lock"
   end
 
 end

@@ -10,6 +10,11 @@ namespace :db do
     rake 'db:drop'
   end
 
+  desc 'db:seed'
+  task :seed do
+    rake 'db:seed'
+  end
+
   desc 'db:migrate'
   task :migrate do
     deploy.migrate
