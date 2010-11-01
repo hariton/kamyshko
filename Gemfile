@@ -1,8 +1,8 @@
 # external dependencies:
-#     sphinx
+#   sphinx, memcached
 #   для извлечения картинок из pdf'а требуется утилита pdfimages (из пакета poppler-utils)
 #     apt-get install poppler-utils
-#   для работы rmagick требуется ImageMagick с библиотеками:
+#   для работы mini_magick требуется ImageMagick с библиотеками:
 #     apt-get install imagemagick libmagick9-dev
 # development:
 #   graphviz (включает dot- и neato-утилиты необходимые для railroad)
@@ -30,8 +30,14 @@ gem 'system_timer',              '1.0'                                          
 
 group :test do
   gem 'test-unit',               '2.0.7'
-  gem 'rspec',                   '1.3.0'
-  gem 'rspec-rails',             '1.3.2'
-  gem 'rcov',                    '0.9.8'
   gem 'shoulda',                 '2.10.3'                                                     # http://github.com/thoughtbot/shoulda
+  gem 'rcov',                    '0.9.8'
+
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber', '0.7.2'
+  gem 'spork'
+  gem 'launchy'    # So you can do Then show me the page
+
 end

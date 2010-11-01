@@ -33,6 +33,12 @@ user.password_confirmation = 'test01'
 user.roles << role_admin
 user.save!
 
+user = User.create :login => 'test01', :name => 'Test01', :email => 'test01@example.com'
+user.password = 'test01'
+user.password_confirmation = 'test01'
+user.roles << role_admin
+user.save!
+
 user = User.create :login => 'test02', :name => 'Test02', :email => 'test02@example.com'
 user.password = 'test02'
 user.password_confirmation = 'test02'
